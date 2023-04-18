@@ -4,6 +4,7 @@ window.onload = function(){
 }
 
 function main():void{
+    resetErrMessages();
     //alert("reg button clicked");
     //first name box validation
     isTextPresent("first-name", "First name is required");
@@ -16,7 +17,21 @@ function main():void{
     //     errSpan.innerText = "Last name is required";
     // }
 }
-
+/**
+ * Resets all spans back to the default text
+ */
+function resetErrMessages():void{
+    let allSpans = document.querySelectorAll("form span");
+    for(let i = 0; i < allSpans.length; i++){
+        let currSpan = <HTMLElement>allSpans[i];
+        if(currSpan.hasAttribute("data-required")){
+            currSpan.innerText = "*";
+        }
+        else{
+            currSpan.innerText = "";
+        }
+    }
+}
 /**
  * Returns true if the text box with the given id
  * has some text inside of it
