@@ -16,6 +16,24 @@ function main():void{
     //     let errSpan = <HTMLSpanElement>lastNameBox.nextElementSibling;
     //     errSpan.innerText = "Last name is required";
     // }
+    //validate date
+    checkValidDate();
+}
+function checkValidDate() {
+    let dobBox = <HTMLInputElement>document.getElementById("dob");
+    let dob = dobBox.value;
+    if (!isValidDate(dob)) {
+        dobBox.nextElementSibling.innerHTML = "Invalid format. mm/dd/yyyy";
+    }
+}
+
+function isValidDate(input:string):boolean{
+    //Validating mm/dd/yyyy and m/d/yyyy
+    // nn/dd/yyyy
+    // \d{1,2}\/\d{1,2}\/\d{4}
+    let pattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/g;
+    let result = pattern.test(input);
+    return result;
 }
 /**
  * Resets all spans back to the default text
